@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo1/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class pertemuan1 extends StatefulWidget {
   pertemuan1({super.key, required this.title});
@@ -31,6 +33,7 @@ class _pertemuan1State extends State<pertemuan1> {
       _counter++;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +92,21 @@ class _pertemuan1State extends State<pertemuan1> {
                 "Simpan",
                 style: TextStyle(color: Colors.white),
               ),
-            )
+            ),
+            ElevatedButton(
+              onPressed: (() async {
+                SharedPreferences pref = await SharedPreferences.getInstance();
+                await pref.setInt("is_login", 1);
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MyHomePage(title: "Home")));
+              }),
+              child: Text(
+                "Kembali",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
           ],
         ),
       ),

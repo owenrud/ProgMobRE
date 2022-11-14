@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo1/pertemuan1.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: pertemuan1(title: 'Flutter Demo Home Page Buatan sendirii'),
+      home: MyHomePage(title: 'Flutter Demo Home Page Buatan sendirii'),
     );
   }
 }
@@ -60,6 +61,22 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void navigateLogin() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    int? isLogin = pref.getInt("is_login");
+    if (isLogin == 1) {
+      Navigator.pushReplacement
+        (context,
+          MaterialPageRoute(builder: (context) => pertemuan1(title: "Home")));
+    }
+  }
+
+  @override
+  void initState() {
+    navigateLogin();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -78,20 +95,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
@@ -101,6 +104,18 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            ElevatedButton(
+                onPressed: (() async {
+                  SharedPreferences pref =
+                      await SharedPreferences.getInstance();
+                  await pref.setInt("is_login", 1);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              pertemuan1(title: "Home Pertemuan 1")));
+                }),
+                child: Text('Login'))
           ],
         ),
       ),
