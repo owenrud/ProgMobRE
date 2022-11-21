@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo1/pertemuan1.dart';
+import 'package:flutter_demo1/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 void main() {
-  runApp(MyApp());
+  runApp(new MaterialApp(
+    home: splashscreen(title: "Demo Splashscreen Manual",)
+  )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +29,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page Buatan sendirii'),
+      home: splashscreen(title: 'Flutter Demo SplashScreen Page Buatan sendirii'),
     );
   }
 }
@@ -61,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void navigateLogin() async {
+  /*void navigateLogin() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     int? isLogin = pref.getInt("is_login");
     if (isLogin == 1) {
@@ -69,61 +74,29 @@ class _MyHomePageState extends State<MyHomePage> {
         (context,
           MaterialPageRoute(builder: (context) => pertemuan1(title: "Home")));
     }
-  }
+  }*/
 
   @override
   void initState() {
-    navigateLogin();
+    //navigateLogin();
   }
-
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            ElevatedButton(
-                onPressed: (() async {
-                  SharedPreferences pref =
-                      await SharedPreferences.getInstance();
-                  await pref.setInt("is_login", 1);
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              pertemuan1(title: "Home Pertemuan 1")));
-                }),
-                child: Text('Login'))
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    // TODO: implement build
+    throw UnimplementedError();
   }
+
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return new SplashScreen(
+  //     seconds:10,
+  //     navigateAfterSeconds: pertemuan1(title: 'Pertemuan1'),
+  //     title: new Text('contoh splash screen'),
+  //     image: Image.asset('images/logo.png'),
+  //     photoSize: 150.0,
+  //   );
+  // }
+
 }
