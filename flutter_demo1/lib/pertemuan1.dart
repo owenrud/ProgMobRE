@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo1/main.dart';
+import 'package:flutter_demo1/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class pertemuan1 extends StatefulWidget {
@@ -100,7 +101,7 @@ class _pertemuan1State extends State<pertemuan1> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MyHomePage(title: "Home")));
+                        builder: (context) => splashscreen(title: "Home")));
               }),
               child: Text(
                 "Kembali",
