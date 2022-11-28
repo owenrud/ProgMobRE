@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo1/home.dart';
 import 'package:flutter_demo1/pertemuan1.dart';
 import 'package:flutter_demo1/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(new MaterialApp(
-    home: splashscreen(title: "Demo Splashscreen Manual",)
+    home: Home()
   )
   );
 }
