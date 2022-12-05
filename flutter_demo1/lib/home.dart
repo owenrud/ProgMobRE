@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo1/mahasiswa/mahasiswa_get.dart';
 
 void main() {
   runApp(const Home());
@@ -47,6 +48,16 @@ class _HomeState extends State<Home> {
                title: Text("Card view"),
                onTap: (){
                  Navigator.pop(context);
+               },
+             ),
+             ListTile(
+               leading: Icon(Icons.account_box_rounded),
+               title: Text("Mahasiswa"),
+               onTap: (){
+                 Navigator.push(
+                     context,
+                 MaterialPageRoute(builder:(context)=>getMahasiswa())
+                 );
                },
              ),
            ],
