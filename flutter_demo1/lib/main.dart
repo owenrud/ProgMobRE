@@ -6,21 +6,20 @@ import 'package:flutter_demo1/mahasiswa/mahasiswa_get.dart';
 import 'package:flutter_demo1/pertemuan1.dart';
 import 'package:flutter_demo1/splashscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:splashscreen/splashscreen.dart';
 
-class MyHttpOverrides extends HttpOverrides{
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext? context){
+  HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
 
 void main() {
   HttpOverrides.global = new MyHttpOverrides();
-  runApp(new MaterialApp(
-    home:Home()
-  )
-  );
+  runApp(new MaterialApp(home: SplashScreen()));
 }
 
 
